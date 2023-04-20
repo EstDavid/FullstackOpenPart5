@@ -38,7 +38,7 @@ const Blog = ({ blog, update, loggedUser, remove }) => {
     }
 
     return (
-        <div style={blogStyle}>
+        <div className='blog' style={blogStyle}>
             <div>
                 <p>{blog.title} {blog.author}
                     <button
@@ -47,24 +47,20 @@ const Blog = ({ blog, update, loggedUser, remove }) => {
                     </button>
                 </p>
             </div>
-            {showDetails ?
-                <div style={showWhenDetails}>
-                    <p>{blog.url}</p>
-                    <p>{`likes ${blog.likes}`}<button onClick={handleLike}>like</button></p>
-                    {blog.user !== undefined ?
-                        <p>{blog.user.name}</p>
-                        :
-                        null
-                    }
-                    {loggedUser.username === blog.user.username ?
-                        <button onClick={handleRemove}>remove</button>
-                        :
-                        null
-                    }
-                </div>
-                :
-                null
-            }
+            <div style={showWhenDetails} className='blogDetails'>
+                <p>{blog.url}</p>
+                <p>{`likes ${blog.likes}`}<button onClick={handleLike}>like</button></p>
+                {blog.user !== undefined ?
+                    <p>{blog.user.name}</p>
+                    :
+                    null
+                }
+                {loggedUser.username === blog.user.username ?
+                    <button onClick={handleRemove}>remove</button>
+                    :
+                    null
+                }
+            </div>
         </div>
     )
 }
